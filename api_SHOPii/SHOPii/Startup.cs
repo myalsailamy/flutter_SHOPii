@@ -18,6 +18,7 @@ using SHOPii.Models;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.IdentityModel.Tokens;
 using SHOPii.Services;
+using SHOPii.Helpers;
 
 namespace SHOPii
 {
@@ -43,8 +44,8 @@ namespace SHOPii
 
             //JSON
             object p = services.AddControllersWithViews().AddNewtonsoftJson(options =>
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             //Config JWWT
             var key = Encoding.ASCII.GetBytes(UserService.KEY);
@@ -70,6 +71,10 @@ namespace SHOPii
 
             //SCOPE USER SERVICE
             services.AddScoped<IUserService, UserService>();
+
+            services.AddSwaggerDocumentation();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,7 +90,7 @@ namespace SHOPii
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSwaggerDocumentation();
 
             app.UseEndpoints(endpoints =>
             {

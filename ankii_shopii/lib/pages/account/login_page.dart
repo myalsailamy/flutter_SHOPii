@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: FOREGROUND_COLOR,
       body: Stack(
         children: <Widget>[
@@ -134,8 +134,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Text(
               'Or login with',
               textAlign: TextAlign.center,
-              style:
-                  TextStyle(color: PRIMARY_TEXT_COLOR.withOpacity(0.5), fontSize: 12),
+              style: TextStyle(
+                  color: PRIMARY_TEXT_COLOR.withOpacity(0.5), fontSize: 12),
             ),
           ),
           buildSocialLogin(),
@@ -165,10 +165,11 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.pop(context);
           } else {
             await showDialog(
-                context: context,
-                child: AlertDialog(
-                  content: Text('Login FAILED'),
-                ));
+              context: context,
+              builder: (_) => AlertDialog(
+                content: Text('Login FAILED'),
+              ),
+            );
           }
         },
         color: FOREGROUND_COLOR,
@@ -214,7 +215,7 @@ class _LoginPageState extends State<LoginPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text('Dont have an account?',style: TEXT_STYLE_PRIMARY),
+        Text('Dont have an account?', style: TEXT_STYLE_PRIMARY),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 20),
           child: RaisedButton(
@@ -225,8 +226,9 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () {},
             color: BACKGROUND_COLOR,
             padding: EdgeInsets.all(10),
-            child:
-                Container(alignment: Alignment.center, child: Text('Register',style: TEXT_STYLE_PRIMARY)),
+            child: Container(
+                alignment: Alignment.center,
+                child: Text('Register', style: TEXT_STYLE_PRIMARY)),
           ),
         ),
       ],

@@ -3,8 +3,12 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
-const DOMAIN = 'https://shopii.azurewebsites.net/api/';
+// const DOMAIN = 'https://shopii.azurewebsites.net/api/';
 // const DOMAIN = 'http://10.0.3.2:50107/api/';
+//const DOMAIN = "https://10.0.2.2:5001/api/";
+const DOMAIN = "http://10.0.2.2:5000/api/";
+// const ApiURL = "http://192.168.8.104/api/";
+
 const CATEGORY_ENDPOINT = DOMAIN + 'categories';
 const PRODUCT_ENDPOINT = DOMAIN + 'products';
 const LOGIN_ENDPOINT = DOMAIN + 'login';
@@ -37,7 +41,10 @@ class HttpHelper {
   }
 
   static Future<http.Response> get(String url, {String bearerToken}) async {
-    return await http.get(url,
-        headers: {HttpHeaders.authorizationHeader: 'Bearer $bearerToken'});
+    if (bearerToken != null)
+      return await http.get(url,
+          headers: {HttpHeaders.authorizationHeader: 'Bearer $bearerToken'});
+    else
+      return await http.get(url);
   }
 }

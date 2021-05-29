@@ -19,7 +19,9 @@ class CartService extends BlocService<OrderingModel> {
   }
 
   Future<List<OrderingModel>> getCurrentCart() async {
-    var rs = await HttpHelper.get(CART_ENDPOINT, bearerToken: currentLogin.token);
+    return null;
+    var rs =
+        await HttpHelper.get(CART_ENDPOINT, bearerToken: currentLogin.token);
     if (rs.statusCode == 200) {
       var jsonArray = jsonDecode(rs.body) as List;
       return jsonArray.map((json) => OrderingModel.fromJson(json)).toList();
@@ -28,7 +30,8 @@ class CartService extends BlocService<OrderingModel> {
   }
 
   Future<OrderingModel> addToCart(int productId, int count) async {
-    var rs = await HttpHelper.post(ORDERING_ENDPOINT + "/cart", {"productID": productId, "count": count},
+    var rs = await HttpHelper.post(
+        ORDERING_ENDPOINT + "/cart", {"productID": productId, "count": count},
         bearerToken: currentLogin.token);
     if (rs.statusCode == 200) {
       var json = jsonDecode(rs.body);

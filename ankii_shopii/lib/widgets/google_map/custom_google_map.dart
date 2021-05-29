@@ -134,7 +134,7 @@ class _DynamicGoogleMapState extends State<DynamicGoogleMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       backgroundColor: BACKGROUND_COLOR,
       body: Stack(
         children: <Widget>[

@@ -12,7 +12,7 @@ class LoadingDialog {
     showDialog(
         context: context,
         barrierDismissible: false,
-        child: WillPopScope(
+        builder: (_) => WillPopScope(
           onWillPop: () async {
             return hideOnBackButton;
           },
@@ -55,7 +55,7 @@ class LoadingDialog {
   static showMessage(BuildContext context, {String text}) async {
     return await showDialog(
         context: context,
-        child: AlertDialog(
+        builder: (_) => AlertDialog(
           backgroundColor: BACKGROUND_COLOR,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
@@ -79,7 +79,7 @@ class LoadingDialog {
       {String text, @required Function onYes, @required Function onNo}) async {
     return await showDialog(
         context: context,
-        child: AlertDialog(
+        builder: (_) => AlertDialog(
           backgroundColor: BACKGROUND_COLOR,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),

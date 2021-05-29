@@ -19,7 +19,6 @@ class CartService extends BlocService<OrderingModel> {
   }
 
   Future<List<OrderingModel>> getCurrentCart() async {
-    return null;
     var rs =
         await HttpHelper.get(CART_ENDPOINT, bearerToken: currentLogin.token);
     if (rs.statusCode == 200) {
